@@ -28,7 +28,7 @@ async function run() {
     dirValid: join(process.cwd(), 'scannable'),
     dirInvalid: join(process.cwd(), 'non-scannable'),
     mode: 'move',
-    tolerance: 'high',
+    tolerance: 'medium',
   }
 
   const relativePath = (p: string) => {
@@ -90,13 +90,14 @@ async function run() {
         message: 'Select scanner tolerance (chance to get scanned)',
         choices: [
           {
-            value: 'high',
-            title: 'High tolerance (try 37 times)',
-          },
-          {
             value: 'medium',
             title: 'Medium tolerance (try 9 times)',
           },
+          {
+            value: 'high',
+            title: 'High tolerance (try 37 times)',
+          },
+
           {
             value: 'none',
             title: 'No preprocessing',
@@ -109,6 +110,7 @@ async function run() {
   const lines = [
     'Verify scannable QR Code in the current directory:',
     c.blue(`${options.dirSource}`),
+    `Tolerance: ${c.yellow.bold(options.tolerance)}`,
     '',
   ]
 
